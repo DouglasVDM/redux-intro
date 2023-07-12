@@ -1,15 +1,14 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
 import taskReducer from "./reducers/taskReducer";
 
 const store = configureStore({
-    reducer: {
-      tasks: taskReducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(thunk),
+  reducer: {
+    tasks: taskReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
   devTools: true,
-  });
+});
 
 export default store;
