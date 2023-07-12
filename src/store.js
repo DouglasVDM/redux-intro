@@ -1,12 +1,15 @@
-import { configureStore, applyMiddleware } from "redux";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
 
 import taskReducer from "./reducers/taskReducer";
 
-const store = configureStore(
-  taskReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = configureStore({
+    reducer: {
+      tasks: taskReducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(thunk),
+  devTools: true,
+  });
 
 export default store;
